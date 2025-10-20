@@ -8,7 +8,7 @@ Building a multi-account GitHub configuration and switching tool called **GitHub
 - ⏳ Ready to start implementation
 
 ## Tool Purpose
-Simplify managing multiple GitHub accounts (currently: PayPal work account and personal hanslauwers account).
+Simplify managing multiple GitHub accounts (personal, work, client projects, etc.).
 
 ## Planned Features
 
@@ -46,17 +46,17 @@ ghsw clone <url> [account]   # Clone with specific account
 
 ## `ghsw auto` Detection Logic
 1. **Remote URL Analysis** - Parse SSH config hostnames
-2. **Repository Pattern Matching** - Check path patterns (/work/, /personal/)
+2. **Repository Pattern Matching** - Check path patterns (/work/, /personal/, /projects/)
 3. **Existing Git Config** - Read current user.email
 4. **Directory Context** - Check parent directory hints
 
 ### Example Auto-Detection:
 ```bash
 $ ghsw auto
-✓ Detected remote: github.com-hanslauwers:hanslauwers/my-tool.git
-✓ Switching to account: hanslauwers (hans.lauwers@hotmail.com)
+✓ Detected remote: github.com-personal:username/my-tool.git
+✓ Switching to account: personal (user@example.com)
 ✓ Updated Git config for this repository
-✓ SSH key ready: ~/.ssh/id_ed25519_hanslauwers
+✓ SSH key ready: ~/.ssh/id_ed25519_personal
 ```
 
 ## Technical Implementation Plan
@@ -67,14 +67,14 @@ $ ghsw auto
   - Git config management
   - Simple CLI with argparse
 
-## Current Environment Setup
-- Git repository initialized in `/home/admin/personal/`
+## Example Environment Setup
+- Git repository initialized
 - SSH configured for multiple accounts:
-  - `github.com-paypal` (existing PayPal account)
-  - `github.com-hanslauwers` (new personal account)
+  - `github.com-work` (work account)
+  - `github.com-personal` (personal account)
 - SSH keys:
-  - `~/.ssh/id_ed25519_hanslauwers` (for hans.lauwers@hotmail.com)
-  - Existing PayPal key loaded in SSH agent
+  - `~/.ssh/id_ed25519_personal` (for personal@example.com)
+  - `~/.ssh/id_ed25519_work` (for work@company.com)
 
 ## Next Steps When Resuming
 1. Create project structure and initial Python files
@@ -82,13 +82,12 @@ $ ghsw auto
 3. Build account detection and switching logic
 4. Add Git configuration management
 5. Create CLI interface and commands
-6. Test with existing accounts (PayPal + hanslauwers)
+6. Test with existing accounts (work + personal)
 
-## Files Created During Setup
-- SSH key: `~/.ssh/id_ed25519_hanslauwers`
-- SSH config updated: `/home/admin/bt/dotfiles/ssh_config`
-- Git repository initialized in current directory
+## Getting Started
+1. Clone this repository
+2. Follow the setup instructions to configure your accounts
+3. Start using `ghsw` commands to manage your GitHub workflows
 
 ---
-*Project started: 2025-10-19*
-*Current location: /home/admin/personal/*
+*A CLI tool to simplify multi-account GitHub workflows*
